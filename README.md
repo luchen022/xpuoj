@@ -7,7 +7,6 @@
 - **Token 自动缓存与刷新**：支持账号密码登录与本地 JWT 令牌缓存，Token 失效自动重登。
 - **题目查询**：查看比赛列表与指定比赛的题目详情。
 - **代码提交与即时测评**：支持指定语言（如 `cuda-h800`、`triton-h800` 等）提交，并可自动轮询评测进度与得分详情（包括各测试点耗时、`score_ratio` 等指标）。
-- **批量/周期性提交**：支持多题目批量轮询提交测试。
 
 ## 快速上手
 
@@ -63,14 +62,6 @@ uv run client.py list 4
 ```bash
 # 查看指定提交记录的状态与评测数据
 uv run client.py status <SUBMISSION_ID>
-```
-
-### 批量/定时轮询提交
-
-编辑 `auto_submit.py` 中的 `SUBMISSIONS` 列表及提交间隔，执行：
-
-```bash
-uv run auto_submit.py
 ```
 
 ## 相关文档
