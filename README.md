@@ -45,24 +45,24 @@ problem_order: 1
 
 ```bash
 # 提交代码到比赛 4 题目 1（默认 triton-h800），并轮询等待评测结果
-uv run monitor.py submit solution.py --wait
+uv run client.py submit solution.py --wait
 
 # 指定比赛 ID、题目序号与语言
-uv run monitor.py submit kernel.cu --contest 4 --problem 1 --language cuda-h800 --wait
+uv run client.py submit kernel.cu --contest 4 --problem 1 --language cuda-h800 --wait
 ```
 
 ### 查询比赛题目
 
 ```bash
 # 列出比赛中的题目
-uv run monitor.py list 4
+uv run client.py list 4
 ```
 
 ### 查询提交详情
 
 ```bash
 # 查看指定提交记录的状态与评测数据
-uv run monitor.py status <SUBMISSION_ID>
+uv run client.py status <SUBMISSION_ID>
 ```
 
 ### 批量/定时轮询提交

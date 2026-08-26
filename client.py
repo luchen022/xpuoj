@@ -1,11 +1,11 @@
 """
-XPUOJ 自动化脚本 - 第三阶段
-基于逆向分析构建的完整自动化流程：登录 → 提交代码 → 查看测评结果
+XPUOJ 客户端与命令行工具
+自动化评测全流程：登录 → 提交代码 → 查询测评结果
 
 使用方法:
-    uv run monitor.py                    # 交互式登录
-    uv run monitor.py --auto             # 使用 config.yaml 自动登录
-    uv run monitor.py submit <file>      # 直接提交代码文件到比赛4题目1
+    uv run client.py                    # 交互式登录
+    uv run client.py --auto             # 使用 config.yaml 自动登录
+    uv run client.py submit <file>      # 提交代码文件
 """
 
 # /// script
@@ -341,10 +341,10 @@ def main():
     else:
         # 默认：交互模式
         print("[i] 已登录，可用命令:")
-        print("  uv run monitor.py list 4              # 列出比赛4的题目")
-        print("  uv run monitor.py submit code.py       # 提交代码")
-        print("  uv run monitor.py submit code.py --wait # 提交并等待结果")
-        print("  uv run monitor.py status 5369           # 查看提交状态")
+        print("  uv run client.py list 4              # 列出比赛4的题目")
+        print("  uv run client.py submit code.py       # 提交代码")
+        print("  uv run client.py submit code.py --wait # 提交并等待结果")
+        print("  uv run client.py status 5369           # 查看提交状态")
 
 
 if __name__ == "__main__":

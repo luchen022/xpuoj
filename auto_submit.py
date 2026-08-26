@@ -17,7 +17,7 @@ import os
 import sys
 import time
 from datetime import datetime
-from monitor import XPUOJClient, load_config
+from client import XPUOJClient, load_config
 
 SUBMISSIONS = [
     {
