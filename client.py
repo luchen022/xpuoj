@@ -187,6 +187,15 @@ class XPUOJClient:
         resp = self.session.post(f"{API_BASE}/api/contest/play/querySubmissions", json=body)
         return resp.json()
 
+    def get_scoreboard(self, contest_id: int, skip_count: int = 0, take_count: int = 50) -> dict:
+        """获取比赛排行榜"""
+        resp = self.session.post(f"{API_BASE}/api/contest/play/getContestScoreboard", json={
+            "contestId": contest_id,
+            "skipCount": skip_count,
+            "takeCount": take_count,
+        })
+        return resp.json()
+
     def wait_for_result(self, submission_id: str, timeout: int = 180, poll_interval: float = 50.0) -> dict:
         """轮询等待测评结果"""
         print(f"[⏳] 等待测评结果 (submission: {submission_id})...")
@@ -291,6 +300,11 @@ def main():
     status_parser = subparsers.add_parser("status", help="查看提交状态")
     status_parser.add_argument("submission_id", help="提交 ID")
 
+    # scoreboard 子命令
+    sb_parser = subparsers.add_parser("scoreboard", help="查看比赛排行榜")
+    sb_parser.add_argument("contest_id", type=int, nargs="?", default=None, help="比赛 ID (默认用 config.yaml 中的值)")
+    sb_parser.add_argument("-n", "--top", type=int, default=None, help="只显示前 N 名")
+
     args = parser.parse_args()
 
     client = XPUOJClient()
@@ -338,6 +352,13 @@ def main():
     elif args.command == "status":
         print(client.get_submission_detail_raw(args.submission_id))
 
+    elif args.command == "scoreboard":
+        contest_id = args.contest_id or config.get("contest_id", 13)
+        from scoreboard import fetch_all_scoreboard, print_scoreboard_table
+        data = fetch_all_scoreboard(client, contest_id)
+        current_username = client._email.split("@")[0] if client._email else None
+        print_scoreboard_table(data, contest_id=contest_id, top=args.top, current_user=current_username)
+
     else:
         # 默认：交互模式
         print("[i] 已登录，可用命令:")
@@ -345,6 +366,7 @@ def main():
         print("  uv run client.py submit code.py       # 提交代码")
         print("  uv run client.py submit code.py --wait # 提交并等待结果")
         print("  uv run client.py status 5369           # 查看提交状态")
+        print("  uv run client.py scoreboard 13       # 查看比赛排行榜")
 
 
 if __name__ == "__main__":

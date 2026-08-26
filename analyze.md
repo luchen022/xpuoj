@@ -84,6 +84,13 @@ POST /api/contest/play/querySubmissions
 Body: {"locale": "zh_CN", "contestId": 4, "maxId": 5369, "takeCount": 1}
 ```
 
+### 10. 获取比赛排行榜
+```
+POST /api/contest/play/getContestScoreboard
+Body: {"contestId": 13, "skipCount": 0, "takeCount": 50}
+```
+- 返回结构包含 `scoreboard`（各选手排名、用户详情、各题得分与提交数、罚时、总分）和 `total`（总参赛人数）。
+
 ## 认证流程
 
 1. POST `/api/auth/login` → 获取 token

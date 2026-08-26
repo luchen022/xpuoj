@@ -7,6 +7,7 @@
 - **Token 自动缓存与刷新**：支持账号密码登录与本地 JWT 令牌缓存，Token 失效自动重登。
 - **题目查询**：查看比赛列表与指定比赛的题目详情。
 - **代码提交与即时测评**：支持指定语言（如 `cuda-h800`、`triton-h800` 等）提交，并可自动轮询评测进度与得分详情（包括各测试点耗时、`score_ratio` 等指标）。
+- **排行榜查询与导出**：终端格式化展示比赛排行榜（各题得分、总分、罚时、提交数），支持限制前 N 名，支持导出为 JSON/CSV。
 
 ## 快速上手
 
@@ -62,6 +63,23 @@ uv run client.py list 4
 ```bash
 # 查看指定提交记录的状态与评测数据
 uv run client.py status <SUBMISSION_ID>
+```
+
+### 查询比赛排行榜
+
+```bash
+# 查询指定比赛的排行榜（终端对齐表格展示）
+uv run scoreboard.py -c 13
+
+# 仅查看前 10 名
+uv run scoreboard.py -c 13 -n 10
+
+# 导出为 CSV 文件或查看 JSON 原始数据
+uv run scoreboard.py -c 13 --csv rank.csv
+uv run scoreboard.py -c 13 --json
+
+# 也可以直接通过 client.py 调用
+uv run client.py scoreboard 13
 ```
 
 ## 相关文档
