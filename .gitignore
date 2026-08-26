@@ -1,0 +1,26 @@
+# 配置文件与凭据信息 (包含密码与认证令牌，严禁提交)
+config.yaml
+token.json
+cookies.json
+
+# 抓包历史与临时数据
+captured_requests.json
+
+# Python 虚拟环境与缓存
+.venv/
+venv/
+ENV/
+__pycache__/
+*.py[cod]
+*$py.class
+
+# 日志与临时文件
+*.log
+*.tmp
+
+# 编辑器与系统配置
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*~

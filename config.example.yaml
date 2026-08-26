@@ -1,0 +1,9 @@
+# XPUOJ 自动化配置模板
+# 复制此文件为 config.yaml 并填入真实账号密码
+
+email: "your_email@example.com"
+password: "your_password"
+
+# 默认比赛和题目
+contest_id: 4
+problem_order: 1
